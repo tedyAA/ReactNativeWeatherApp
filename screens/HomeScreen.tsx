@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Image,
   Text,
@@ -14,12 +14,25 @@ import {
 } from "react-native-heroicons/outline";
 import { MapPinIcon } from "react-native-heroicons/solid";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import {debounce} from 'lodash'
+import { fetchForecast, fetchLocations } from "assets/api/weather";
+import { weatherImages } from "assets/constants";
 export default function HomeScreen() {
   const [showSearch, toggleSearch] = useState(false);
-  const [locations, setLocations] = useState([1, 2, 3]);
+  const [locations, setLocations] = useState([]);
+  const [weather, setWeather] = useState({});
 
-  const handleLocation = (loc: string) => console.log(loc);
+  const handleLocation = (loc: never) => {
+    setLocations([])
+    toggleSearch(false)
+    fetchForecast({
+      cityName: loc.name,
+      days: '7'
+    }).then((data: any)=>{
+      setWeather(data)
+      console.log('got forecast:', data)
+    })
+  }
 
   const theme = {
     bgWhite: (opacity: number) => `rgba(255, 255, 255, ${opacity})`,
@@ -30,6 +43,24 @@ export default function HomeScreen() {
     temp: 23,
     icon: require("../assets/images/heavyrain.png"),
   });
+
+  const handleSearch = (value: string) => {
+  if (value.length > 2) {
+    fetchLocations({ cityName: value })
+      .then((data) => {
+        setLocations(data)
+      })
+      .catch((error) => {
+        console.error("Error fetching locations:", error);
+      });
+  }
+  console.log('location', locations)
+};
+
+
+  const handleTextDebounce = useCallback(debounce(handleSearch, 1200), [])
+
+  const {current, location} = weather;
 
   return (
     <View className="flex-1 relative bg-black">
@@ -42,7 +73,7 @@ export default function HomeScreen() {
         className="absolute w-full h-full"
       />
 
-      <SafeAreaView className="flex-1 pt-5">
+      <SafeAreaView className="flex-1 pt-4">
         {/* Search */}
         <View className="mx-4 mt-4 z-50">
           <View
@@ -52,6 +83,7 @@ export default function HomeScreen() {
           >
             {showSearch && (
               <TextInput
+              onChangeText={handleSearch}
                 placeholder="Search City"
                 placeholderTextColor="lightgray"
                 className="flex-1 h-10 text-white text-base pl-4"
@@ -73,11 +105,11 @@ export default function HomeScreen() {
                 <TouchableOpacity
                   key={i}
                   className="flex-row items-center border-b border-gray-400 py-3 px-4"
-                  onPress={() => handleLocation(String(loc))}
+                  onPress={() => handleLocation(loc)}
                 >
                   <MapPinIcon size={20} color="gray" />
                   <Text className="ml-2 text-black text-lg">
-                    London, United Kingdom
+                    {loc?.name}, {loc?.country}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -89,27 +121,31 @@ export default function HomeScreen() {
         <ScrollView className="flex-1 mx-4 mt-6">
           {/* Location */}
           <Text className="text-white text-center text-2xl font-bold">
-            London,{" "}
+            {location?.name}
             <Text className="text-gray-300 text-lg font-semibold">
-              United Kingdom
+              {" "+location?.country}
             </Text>
           </Text>
 
           {/* Weather Image */}
           <View className="flex-row justify-center my-4">
-            <Image
-              source={require("../assets/images/partlycloudy.png")}
-              className="w-32 h-32"
-            />
+           <Image
+  source={
+    weatherImages[current?.condition?.text as keyof typeof weatherImages] ||
+    weatherImages['other']
+  }
+  className="w-32 h-32"
+/>
+
           </View>
 
           {/* Temperature */}
           <View className="space-y-2 mb-6">
             <Text className="text-center text-white text-6xl font-bold">
-              23°
+              {current?.temp_c}
             </Text>
             <Text className="text-center text-white text-xl tracking-widest">
-              Partly cloudy
+              {current?.condition?.text}
             </Text>
           </View>
 
