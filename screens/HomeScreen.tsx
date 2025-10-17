@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import { CalendarDaysIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -66,6 +66,11 @@ export default function HomeScreen() {
       setForecastLoading(false);
     }
   }, 500);
+
+  useEffect(() => {
+    handleSearch('Sofia');
+    handleSearch.flush();
+  }, []);
 
   return (
     <View className="relative flex-1 bg-black">
