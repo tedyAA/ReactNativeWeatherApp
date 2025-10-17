@@ -25,6 +25,29 @@ export function convertUnixTime(unixTime) {
   return `${hours}:${minutes}`;
 }
 
+export function convertUnixDate(unixTime) {
+  const date = new Date(unixTime * 1000);
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const dayName = weekdays[date.getDay()];
+  const dayNumber = date.getDate();
+  const monthName = months[date.getMonth()];
+  return `${dayName}, ${dayNumber} ${monthName}`;
+}
+
 export function getWeekdayAbbrev(unixTime) {
   const date = new Date(unixTime * 1000);
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
