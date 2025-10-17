@@ -9,7 +9,8 @@ import { weatherImages } from 'assets/constants';
 import WeatherImage from 'components/currentWeather/WeatherImage';
 import WeatherInfo from 'components/currentWeather/WeatherInfo';
 import WeatherDetails from 'components/currentWeather/WeatherDetails';
-import Forecast from 'components/currentWeather/Forecast';
+import Forecast from 'components/forecasrt/Forecast';
+import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
 
 export default function HomeScreen() {
   interface WeatherData {
@@ -18,6 +19,7 @@ export default function HomeScreen() {
       temp: number;
     };
     name: string;
+    dt: number;
     sys: {
       country: string;
       sunrise: string;
@@ -96,10 +98,13 @@ export default function HomeScreen() {
           {locationLoading && <Text className="text-xl text-white">Loading....</Text>}
           {!isEmpty(location) && !locationLoading && (
             <View>
-              <Text className="text-center text-3xl font-bold text-white">
-                {location?.name},{' '}
-                <Text className="text-xl font-light">{location?.sys?.country}</Text>
-              </Text>
+              {/* Weather Temperature and Location */}
+              <WeatehrLocationTemp
+                temperature={location?.main?.temp}
+                locationCountry={location?.sys?.country}
+                locationName={location?.name}
+                date={location?.dt}
+              />
               {/* Weather Image */}
               <View className="flex-row justify-center">
                 <WeatherImage
@@ -107,26 +112,23 @@ export default function HomeScreen() {
                     weatherImages[location?.weather[0]?.main as keyof typeof weatherImages] ||
                     weatherImages['other']
                   }
-                  className="h-32 w-32"
+                  className="h-64 w-64"
                 />
               </View>
-              {/* Temperature */}
-              <WeatherInfo
-                temperature={location?.main?.temp}
-                description={location?.weather[0]?.main}
-              />
+
               {/* Details */}
               <WeatherDetails
                 windSpeed={location?.wind?.speed}
                 humidity={location?.main[0]?.humidity}
+                description={location?.weather[0]?.main}
                 sunrise={location?.sys?.sunrise}
                 sunset={location?.sys?.sunset}
               />
 
               {/* Daily Forecast */}
-              <View className="mx-5 mb-4 flex-row items-center space-x-2">
+              <View className="mx-3 mb-4 flex-row items-center space-x-2">
                 <CalendarDaysIcon size={22} color="white" />
-                <Text className="text-base font-semibold text-white">Daily forecast</Text>
+                <Text className="ml-3 text-base font-semibold text-white">Daily forecast</Text>
               </View>
 
               <Forecast forecast={forecast} bgWhite={theme.bgWhite} />

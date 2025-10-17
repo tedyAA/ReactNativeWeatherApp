@@ -10,7 +10,7 @@ interface ForecastItem {
 
 interface ForecastScrollProps {
   forecast: ForecastItem[];
-  bgWhite: (opacity: number) => string; // theme function
+  bgWhite: (opacity: number) => string;
 }
 
 const Forecast: React.FC<ForecastScrollProps> = ({ forecast, bgWhite }) => {
@@ -31,7 +31,7 @@ const Forecast: React.FC<ForecastScrollProps> = ({ forecast, bgWhite }) => {
             <Text className="text-white">{getWeekdayAbbrev(item?.dt)}</Text>
             <Image source={imageSource} className="h-14 w-14" />
             <Text className="text-center text-lg font-bold text-white">
-              {Math.round(item?.main?.temp)}
+              {Math.round(item?.main?.temp)}°
             </Text>
           </View>
         );
