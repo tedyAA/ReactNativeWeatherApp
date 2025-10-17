@@ -1,17 +1,27 @@
 export const weatherImages = {
-  'Partly cloudy': require('../images/partlycloudy.png'),
-  'Moderate rain': require('../images/moderaterain.png'),
-  'Patchy rain possible': require('../images/moderaterain.png'),
-  'Sunny': require('../images/sun.png'),
+  'Thunderstorm': require('../images/heavyrain.png'),
+  'Drizzle': require('../images/moderaterain.png'),
+  'Rain': require('../images/heavyrain.png'),
+  'Snow': require('../images/snow.png'),
+  'Mist': require('../images/moderaterain.png'),
+  'Smoke': require('../images/cloud.png'),
+  'Haze': require('../images/cloud.png'),
+  'Dust': require('../images/cloud.png'),
+  'Fog': require('../images/cloud.png'),
+  'Sand': require('../images/mist.png'),
+  'Ash': require('../images/mist.png'),
+  'Squall': require('../images/mist.png'),
+  'Tornado': require('../images/tornado.png'),
   'Clear': require('../images/sun.png'),
-  'Overcast': require('../images/cloud.png'),
-  'Cloudy': require('../images/cloud.png'),
-  'Light rain': require('../images/moderaterain.png'),
-  'Moderate rain at times': require('../images/moderaterain.png'),
-  'Heavy rain': require('../images/heavyrain.png'),
-  'Heavy rain at times': require('../images/heavyrain.png'),
-  'Moderate or heavy freezing rain': require('../images/heavyrain.png'),
-  'Moderate or heavy rain shower': require('../images/heavyrain.png'),
-  'Moderate or heavy rain with thunder': require('../images/heavyrain.png'),
+  'Clouds': require('../images/cloud.png'),
   'other': require('../images/moderaterain.png'),
-};
+} 
+
+export function convertUnixTime(unixTime) {
+ 
+  const date = new Date(unixTime * 1000);
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
+}
