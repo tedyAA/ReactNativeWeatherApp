@@ -7,7 +7,6 @@ import { debounce, isEmpty } from 'lodash';
 import { fetchForecast, fetchLocations } from 'assets/api/weather';
 import { weatherImages } from 'assets/constants';
 import WeatherImage from 'components/currentWeather/WeatherImage';
-import WeatherInfo from 'components/currentWeather/WeatherInfo';
 import WeatherDetails from 'components/currentWeather/WeatherDetails';
 import Forecast from 'components/forecasrt/Forecast';
 import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
@@ -15,15 +14,15 @@ import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
 export default function HomeScreen() {
   interface WeatherData {
     main: {
-      humidiry: string;
+      humidity: number;
       temp: number;
     };
     name: string;
     dt: number;
     sys: {
       country: string;
-      sunrise: string;
-      sunset: string;
+      sunrise: number;
+      sunset: number;
     };
     weather: [
       {
@@ -119,7 +118,7 @@ export default function HomeScreen() {
               {/* Details */}
               <WeatherDetails
                 windSpeed={location?.wind?.speed}
-                humidity={location?.main[0]?.humidity}
+                humidity={location?.main?.humidity}
                 description={location?.weather[0]?.main}
                 sunrise={location?.sys?.sunrise}
                 sunset={location?.sys?.sunset}
