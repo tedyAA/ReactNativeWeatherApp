@@ -12,6 +12,7 @@ import Forecast from 'components/forecasrt/Forecast';
 import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
 import LoadingScreen from 'components/loading/LoadingScreen';
 import WeatherGradient from 'components/weatherBackground';
+import ErrorScreen from 'components/error/ErrorScreen';
 
 export default function HomeScreen() {
   interface WeatherData {
@@ -40,6 +41,7 @@ export default function HomeScreen() {
   const [locationLoading, setLocationLoading] = useState(true);
   const [forecstLoading, setForecastLoading] = useState(true);
   const [forecast, setForecast] = useState({});
+  const [error, setError] = useState<string | null>(null);
 
   const theme = {
     bgWhite: (opacity: number) => `rgba(255, 255, 255, ${opacity})`,
@@ -62,7 +64,7 @@ export default function HomeScreen() {
 
       console.log('Formatted Forecast:', formattedData);
     } catch (error) {
-      console.error('Error fetching weather data:', error);
+      setError('Failed to fetch weather data. Please try again.');
     } finally {
       setTimeout(() => {
         // This is here only to show loading component, remove if not needed
@@ -101,6 +103,7 @@ export default function HomeScreen() {
         <ScrollView className="mx-4 mt-6 flex-1">
           {/* Location */}
           {locationLoading && <LoadingScreen />}
+          {error && !locationLoading && isEmpty(location) && <ErrorScreen />}
           {!isEmpty(location) && !locationLoading && (
             <View>
               {/* Weather Temperature and Location */}
