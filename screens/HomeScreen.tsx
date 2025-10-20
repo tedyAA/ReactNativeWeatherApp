@@ -11,6 +11,7 @@ import WeatherDetails from 'components/currentWeather/WeatherDetails';
 import Forecast from 'components/forecasrt/Forecast';
 import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
 import LoadingScreen from 'components/loading/LoadingScreen';
+import WeatherGradient from 'components/weatherBackground';
 
 export default function HomeScreen() {
   interface WeatherData {
@@ -67,7 +68,7 @@ export default function HomeScreen() {
         // This is here only to show loading component, remove if not needed
         setLocationLoading(false);
         setForecastLoading(false);
-      }, 5000);
+      }, 500);
     }
   }, 500);
 
@@ -79,11 +80,7 @@ export default function HomeScreen() {
   return (
     <View className="relative flex-1 bg-black">
       <StatusBar style="light" />
-      <Image
-        blurRadius={70}
-        source={require('../assets/images/bg.png')}
-        className="absolute h-full w-full"
-      />
+      <WeatherGradient weather={location?.weather[0]?.main} />
 
       <SafeAreaView className="mt-5 flex-1 pt-4">
         <View className="z-50 mx-4 mt-4">
