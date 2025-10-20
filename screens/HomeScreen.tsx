@@ -10,6 +10,7 @@ import WeatherImage from 'components/currentWeather/WeatherImage';
 import WeatherDetails from 'components/currentWeather/WeatherDetails';
 import Forecast from 'components/forecasrt/Forecast';
 import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
+import LoadingScreen from 'components/loading/LoadingScreen';
 
 export default function HomeScreen() {
   interface WeatherData {
@@ -62,8 +63,11 @@ export default function HomeScreen() {
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
-      setLocationLoading(false);
-      setForecastLoading(false);
+      setTimeout(() => {
+        // This is here only to show loading component, remove if not needed
+        setLocationLoading(false);
+        setForecastLoading(false);
+      }, 5000);
     }
   }, 500);
 
@@ -99,7 +103,7 @@ export default function HomeScreen() {
         </View>
         <ScrollView className="mx-4 mt-6 flex-1">
           {/* Location */}
-          {locationLoading && <Text className="text-xl text-white">Loading....</Text>}
+          {locationLoading && <LoadingScreen />}
           {!isEmpty(location) && !locationLoading && (
             <View>
               {/* Weather Temperature and Location */}
