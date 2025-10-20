@@ -88,7 +88,7 @@ export default function HomeScreen() {
       <StatusBar style="light" />
       <WeatherBackground weather={location?.weather[0]?.main} />
 
-      <SafeAreaView className="mt-5 flex-1 pt-4">
+      <SafeAreaView className="mt-7 flex-1 pt-4">
         <View className="z-50 mx-4 mt-4">
           <View className={`flex-row items-center rounded-full bg-white/20 px-4`}>
             <TextInput
