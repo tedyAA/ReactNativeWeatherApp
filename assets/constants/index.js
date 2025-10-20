@@ -18,22 +18,22 @@ export const weatherImages = {
 };
 
 export const gradients = {
-  Thunderstorm: ['#283E51', '#485563'],
-  Drizzle: ['#00C6FB', '#005BEA'],
-  Rain: ['#00C6FB', '#005BEA'],
-  Snow: ['#E0EAFC', '#CFDEF3'],
-  Mist: ['#00C6FB', '#005BEA'],
-  Smoke: ['#E0E6ED', '#C9D3DD', '#B0BEC5'],
-  Haze: ['#E0E6ED', '#C9D3DD', '#B0BEC5'],
-  Dust: ['#E0E6ED', '#C9D3DD', '#B0BEC5'],
-  Fog: ['#E0E6ED', '#C9D3DD', '#B0BEC5'],
-  Sand: ['#DDE3E1', '#BFC8C6', '#AAB0AE'],
-  Ash: ['#DDE3E1', '#BFC8C6', '#AAB0AE'],
-  Squall: ['#DDE3E1', '#BFC8C6', '#AAB0AE'],
-  Tornado: ['#3A3D42', '#1F2126', '#0D0F12'],
-  Clear: ['#87CEFA', '#00BFFF', '#1E90FF'],
-  Clouds: ['#E0E6ED', '#C9D3DD', '#B0BEC5'],
-  other: ['#00C6FB', '#005BEA'],
+  Thunderstorm: ['#1F2B3B', '#3A4A57'],
+  Drizzle: ['#0090D9', '#004A9E'],
+  Rain: ['#0090D9', '#004A9E'],
+  Snow: ['#B0C6E0', '#9AB5D1'],
+  Mist: ['#0090D9', '#004A9E'],
+  Smoke: ['#C5CCD5', '#AAB3BD', '#909CA5'],
+  Haze: ['#C5CCD5', '#AAB3BD', '#909CA5'],
+  Dust: ['#C5CBC9', '#A1A9A6', '#8A918F'],
+  Fog: ['#C5CCD5', '#AAB3BD', '#909CA5'],
+  Sand: ['#C2C9C7', '#A3AAA8', '#8C9290'],
+  Ash: ['#C2C9C7', '#A3AAA8', '#8C9290'],
+  Squall: ['#C2C9C7', '#A3AAA8', '#8C9290'],
+  Tornado: ['#2E3035', '#16171A', '#0A0A0C'],
+  Clear: ['#5A9BD5', '#007ACC', '#1366A8'],
+  Clouds: ['#C5CCD5', '#AAB3BD', '#909CA5'],
+  other: ['#0090D9', '#004A9E'],
 };
 
 export function convertUnixTime(unixTime) {
