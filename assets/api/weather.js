@@ -7,6 +7,8 @@ const weatherEndpoint = (params) =>
   `${weatherUrlBase}weather?q=${params.query}&units=metric&appid=${apiKey}`;
 const forecastEndpoint = (params) =>
   `${weatherUrlBase}forecast?q=${params.query}&units=metric&appid=${apiKey}`;
+const sugestionsEndpoint = (params) =>
+  `http://api.openweathermap.org/geo/1.0/direct?q=${params.query}&limit=5&appid=${apiKey}`;
 
 const apiCall = async (endpoint) => {
   const options = {
@@ -28,4 +30,8 @@ export const fetchForecast = (params) => {
 
 export const fetchLocations = (params) => {
   return apiCall(weatherEndpoint(params));
+};
+
+export const fetchSuggestions = (params) => {
+  return apiCall(sugestionsEndpoint(params));
 };
