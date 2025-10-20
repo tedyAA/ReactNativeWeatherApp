@@ -28,7 +28,7 @@ A beautiful React Native weather app with live weather data, animated background
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/weather-app.git
+git clone https://github.com/tedyAA/ReactNativeWeatherApp.git
 ```
 2. Go to the folder:
 ```bash
