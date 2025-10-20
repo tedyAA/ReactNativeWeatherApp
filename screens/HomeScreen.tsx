@@ -11,10 +11,10 @@ import WeatherDetails from 'components/currentWeather/WeatherDetails';
 import Forecast from 'components/forecasrt/Forecast';
 import WeatehrLocationTemp from 'components/currentWeather/WeatherLocationTemp';
 import LoadingScreen from 'components/loading/LoadingScreen';
-import WeatherGradient from 'components/weatherBackground';
+import WeatherGradient from 'components/WeatherBackground';
 import ErrorScreen from 'components/error/ErrorScreen';
 import axios from 'axios';
-import WeatherBackground from 'components/weatherBackground';
+import WeatherBackground from 'components/WeatherBackground';
 
 export default function HomeScreen() {
   interface WeatherData {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import { StyleSheet, ImageBackground, View } from 'react-native';
 import { weatherBg } from '../assets/constants';
 
 interface WeatherBackgroundProps {
@@ -13,8 +13,9 @@ const WeatherBackground: React.FC<WeatherBackgroundProps> = ({ weather = 'other'
     <ImageBackground
       source={backgroundImage}
       style={StyleSheet.absoluteFillObject}
-      resizeMode="cover"
-    />
+      resizeMode="cover">
+      <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+    </ImageBackground>
   );
 };
 
