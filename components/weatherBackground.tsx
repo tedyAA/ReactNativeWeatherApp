@@ -1,23 +1,21 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { gradients } from '../assets/constants';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { weatherBg } from '../assets/constants';
 
-interface WeatherGradientProps {
+interface WeatherBackgroundProps {
   weather?: string;
 }
 
-const WeatherGradient: React.FC<WeatherGradientProps> = ({ weather = 'other' }) => {
-  const colors = gradients[weather as keyof typeof gradients] || gradients.other;
+const WeatherBackground: React.FC<WeatherBackgroundProps> = ({ weather = 'other' }) => {
+  const backgroundImage = weatherBg[weather as keyof typeof weatherBg] || weatherBg.other;
 
   return (
-    <LinearGradient
-      colors={colors}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
+    <ImageBackground
+      source={backgroundImage}
       style={StyleSheet.absoluteFillObject}
+      resizeMode="cover"
     />
   );
 };
 
-export default WeatherGradient;
+export default WeatherBackground;

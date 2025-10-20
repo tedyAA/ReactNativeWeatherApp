@@ -17,23 +17,23 @@ export const weatherImages = {
   other: require('../images/moderaterain.png'),
 };
 
-export const gradients = {
-  Thunderstorm: ['#1F2B3B', '#3A4A57'],
-  Drizzle: ['#0090D9', '#004A9E'],
-  Rain: ['#0090D9', '#004A9E'],
-  Snow: ['#B0C6E0', '#9AB5D1'],
-  Mist: ['#0090D9', '#004A9E'],
-  Smoke: ['#C5CCD5', '#AAB3BD', '#909CA5'],
-  Haze: ['#C5CCD5', '#AAB3BD', '#909CA5'],
-  Dust: ['#C5CBC9', '#A1A9A6', '#8A918F'],
-  Fog: ['#C5CCD5', '#AAB3BD', '#909CA5'],
-  Sand: ['#C2C9C7', '#A3AAA8', '#8C9290'],
-  Ash: ['#C2C9C7', '#A3AAA8', '#8C9290'],
-  Squall: ['#C2C9C7', '#A3AAA8', '#8C9290'],
-  Tornado: ['#2E3035', '#16171A', '#0A0A0C'],
-  Clear: ['#5A9BD5', '#007ACC', '#1366A8'],
-  Clouds: ['#C5CCD5', '#AAB3BD', '#909CA5'],
-  other: ['#0090D9', '#004A9E'],
+export const weatherBg = {
+  Thunderstorm: require('../images/weather/thunderstorm.jpg'),
+  Drizzle: require('../images/weather/rain.jpg'),
+  Rain: require('../images/weather/rain.jpg'),
+  Snow: require('../images/weather/snow.jpg'),
+  Mist: require('../images/weather/mist.jpg'),
+  Smoke: require('../images/weather/mist.jpg'),
+  Haze: require('../images/weather/mist.jpg'),
+  Dust: require('../images/weather/mist.jpg'),
+  Fog: require('../images/weather/mist.jpg'),
+  Sand: require('../images/weather/mist.jpg'),
+  Ash: require('../images/weather/mist.jpg'),
+  Squall: require('../images/weather/mist.jpg'),
+  Tornado: require('../images/weather/mist.jpg'),
+  Clear: require('../images/weather/clear.jpg'),
+  Clouds: require('../images/weather/clouds.jpg'),
+  other: require('../images/weather/clear.jpg'),
 };
 
 export function convertUnixTime(unixTime) {

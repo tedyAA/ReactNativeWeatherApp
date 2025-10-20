@@ -14,6 +14,7 @@ import LoadingScreen from 'components/loading/LoadingScreen';
 import WeatherGradient from 'components/weatherBackground';
 import ErrorScreen from 'components/error/ErrorScreen';
 import axios from 'axios';
+import WeatherBackground from 'components/weatherBackground';
 
 export default function HomeScreen() {
   interface WeatherData {
@@ -85,7 +86,7 @@ export default function HomeScreen() {
   return (
     <View className="relative flex-1 bg-black">
       <StatusBar style="light" />
-      <WeatherGradient weather={location?.weather[0]?.main} />
+      <WeatherBackground weather={location?.weather[0]?.main} />
 
       <SafeAreaView className="mt-5 flex-1 pt-4">
         <View className="z-50 mx-4 mt-4">
@@ -160,7 +161,7 @@ export default function HomeScreen() {
                   sunrise={location?.sys?.sunrise}
                   sunset={location?.sys?.sunset}
                 />
-                <View className="mx-3 mb-4 flex-row items-center space-x-2">
+                <View className="mx-3 mb-5 mt-6 flex-row items-center space-x-2">
                   <CalendarDaysIcon size={22} color="white" />
                   <Text className="ml-3 text-base font-semibold text-white">Daily forecast</Text>
                 </View>
